@@ -1,23 +1,674 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+ <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "아반떼 중고 리스 비교견적 서비스",
+      "serviceType": "아반떼 중고차 리스 견적 및 컨설팅",
+      "provider": {
+        "@type": "Organization",
+        "name": "중고차 리스 비교센터",
+        "url": "https://yourdomain.com",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+82-10-1234-5678",
+          "contactType": "고객 서비스",
+          "areaServed": "KR"
+        }
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "대한민국"
+      },
+      "description": "2026년 최신 아반떼 중고 리스 상품 비교 분석 및 견적 제공. 아반떼 중고차 리스 장단점, 가격, 초기 비용, 금리, 조건 등을 종합적으로 비교하여 최저가 견적을 제시합니다.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "아반떼 중고 리스 상품 목록",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "아반떼 CN7 중고 리스"
+            },
+            "description": "현대 아반떼 CN7 (7세대) 중고차 리스 상품 비교 견적"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "아반떼 AD 중고 리스"
+            },
+            "description": "현대 아반떼 AD (6세대) 중고차 리스 상품 비교 견적"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "중고차 리스 초기 비용 최소화 컨설팅"
+            },
+            "description": "보증금 및 선납금 없이 진행 가능한 중고차 리스 상품 상담"
+          }
+        ]
+      }
+    }
+    </script>
+
+    <style>
+      /* Google Fonts (Noto Sans KR) for clear readability */
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+      body {
+        font-family: "Noto Sans KR", sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.8;
+        background-color: #f7f9fc; /* Soft, light blue background */
+        color: #333;
+      }
+
+      header {
+        background-color: #004c8c; /* Deep blue for trust */
+        color: white;
+        padding: 2.5rem 1rem;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      header h1 {
+        font-size: 2.8rem;
+        margin-bottom: 0.8rem;
+        font-weight: 700;
+      }
+
+      header p {
+        font-size: 1.2rem;
+        opacity: 0.9;
+      }
+
+      nav ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 1.5rem;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease, transform 0.3s ease;
+        padding: 0.5rem 0;
+        position: relative;
+        font-size: 1rem;
+      }
+
+      nav a:hover {
+        color: #ffcc00; /* Warm accent color on hover */
+        transform: translateY(-2px);
+      }
+
+      main {
+        max-width: 1000px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+        background-color: white;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+        border-radius: 12px;
+      }
+
+      section {
+        padding: 2rem 1.5rem;
+      }
+
+      h1, h2, h3 {
+        color: #004c8c;
+        border-bottom: 2px solid #e0eaf3; /* Soft border for separation */
+        padding-bottom: 0.5rem;
+        margin-top: 2rem;
+      }
+
+      h2 {
+        font-size: 2.2rem;
+        font-weight: 700;
+      }
+
+      h3 {
+        font-size: 1.6rem;
+        margin-top: 1.5rem;
+        color: #0066cc;
+      }
+
+      p {
+        margin-bottom: 1.5rem;
+        color: #555;
+      }
+
+      ul {
+        margin-bottom: 1.5rem;
+        padding-left: 1.5rem;
+        list-style: none; /* Custom list style */
+      }
+
+      ul li {
+        margin-bottom: 0.8rem;
+        line-height: 1.6;
+        padding-left: 1rem;
+        position: relative;
+      }
+
+      ul li::before {
+        content: "•";
+        color: #00a0e9; /* Light blue bullet point */
+        font-weight: bold;
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+      }
+
+      .keyword-tags {
+        margin: 1.5rem 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .keyword-tags a {
+        background-color: #e6f7ff; /* Lightest blue background */
+        color: #0066cc;
+        padding: 8px 16px;
+        border-radius: 25px;
+        font-size: 0.9rem;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        border: 1px solid #cceeff;
+      }
+
+      .keyword-tags a:hover {
+        background-color: #b3d1ff;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 2rem;
+        background-color: #fcfcfc;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      th, td {
+        padding: 1.2rem;
+        border: 1px solid #e0eaf3;
+        text-align: left;
+        font-size: 0.95rem;
+      }
+
+      th {
+        background-color: #f0f6fa;
+        color: #004c8c;
+        font-weight: 700;
+        border-bottom: 2px solid #cceeff;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background-color: #ff6600; /* Orange accent color */
+        color: white;
+        font-weight: 700;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        margin: 1.5rem 0;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(255, 102, 0, 0.3);
+      }
+
+      .cta-button:hover {
+        background-color: #e65c00;
+        transform: translateY(-3px);
+      }
+
+      .highlight {
+        font-weight: 700;
+        color: #ff6600; /* Orange highlight */
+      }
+
+      .sub-section {
+        margin-top: 1.5rem;
+        padding: 1.5rem;
+        background-color: #fcfcfc;
+        border-radius: 8px;
+        border: 1px solid #e0eaf3;
+      }
+
+      .contact-form {
+        margin-top: 2rem;
+        background-color: #f0f6fa; /* Light blue background for forms */
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .contact-form label {
+        display: block;
+        font-weight: 600;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+        color: #004c8c;
+      }
+
+      .contact-form input[type="text"],
+      .contact-form input[type="email"],
+      .contact-form select,
+      .contact-form textarea {
+        width: calc(100% - 20px);
+        padding: 12px;
+        border: 1px solid #cceeff;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+      }
+
+      .contact-form input[type="text"]:focus,
+      .contact-form input[type="email"]:focus,
+      .contact-form select:focus,
+      .contact-form textarea:focus {
+        border-color: #0066cc;
+        outline: none;
+      }
+
+      .contact-form .form-group {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .contact-form .form-group > div {
+        flex: 1;
+      }
+
+      .contact-form button {
+        background-color: #00a0e9; /* Light blue button */
+        color: white;
+        padding: 1rem 1.5rem;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 100%;
+        margin-top: 1rem;
+      }
+
+      .contact-form button:hover {
+        background-color: #008cdb;
+      }
+
+      footer {
+        text-align: center;
+        padding: 2rem 1rem;
+        font-size: 0.9rem;
+        color: #777;
+        background-color: #e0eaf3; /* Soft light background for footer */
+        margin-top: 2rem;
+      }
+
+      .accordion dt {
+        font-weight: 700;
+        margin-top: 1rem;
+        cursor: pointer;
+        color: #0066cc;
+        padding: 1rem;
+        background-color: #f0f6fa;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+      }
+
+      .accordion dt:hover {
+        background-color: #e6f7ff;
+      }
+
+      .accordion dd {
+        margin-left: 0;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        display: none;
+        background-color: #ffffff;
+        border-left: 3px solid #00a0e9;
+      }
+
+      .accordion dt.active + dd {
+        display: block;
+      }
+      .link-reference {
+        font-size: 0.9rem;
+        color: #777;
+        display: block;
+        margin-top: 0.5rem;
+      }
+
+      /* Image styling */
+      .content-image {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 1.5rem 0;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+      /* Graph/Chart styling (simplified CSS-only) */
+      .comparison-chart {
+        width: 100%;
+        margin: 2rem 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1rem;
+        text-align: center;
+      }
+      .chart-item {
+        background-color: #ffffff;
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+      .chart-title {
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: #004c8c;
+        margin-bottom: 0.5rem;
+      }
+      .chart-value {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #ff6600;
+      }
+      .chart-description {
+        font-size: 0.9rem;
+        color: #777;
+      }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>아반떼 중고 리스 가격 비교 견적 및 장단점 분석 - 2026년 최신 가이드</h1>
+        <p>현대 아반떼(Avante) 중고 리스, 신차 리스, 중고차 구매를 비교하고 합리적인 월 납입금을 찾아드립니다.</p>
+        <nav>
+            <ul>
+                <li><a href="#main-intro">서비스 소개</a></li>
+                <li><a href="#pros-and-cons">장점과 단점</a></li>
+                <li><a href="#price-comparison">가격 비교</a></li>
+                <li><a href="#model-comparison">모델별 견적</a></li>
+                <li><a href="#lease-process">리스 과정</a></li>
+                <li><a href="#quote-form">견적 신청</a></li>
+                <li><a href="#faq">자주 묻는 질문</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <section id="main-intro">
+            <h2>아반떼 중고 리스, 왜 주목받고 있을까요?</h2>
+            <p><strong>아반떼 중고 리스</strong>는 최근 경기 침체와 고금리 시대에 합리적인 대안으로 떠오르고 있습니다. 신차 가격은 계속 오르고, 중고차 할부 금리도 높아지면서 초기 비용 부담이 적고 월 납입금 관리가 용이한 리스 상품에 대한 관심이 증가했습니다. 특히, 준중형 세단 시장에서 압도적인 인기를 누리고 있는 현대 아반떼는 신차급의 중고 모델도 풍부하여 리스 시장에서 가장 많이 찾는 모델 중 하나입니다.</p>
+            <p>많은 소비자들이 <strong>아반떼 중고 리스</strong>를 선택하는 주된 이유는 <span class="highlight">신차 대비 저렴한 월 납입금</span>입니다. 신차 리스의 경우 차량 가액 전체를 기준으로 리스료가 산정되지만, 중고 리스는 이미 감가상각이 진행된 차량 가액을 기준으로 하기 때문에 월 납입금 부담이 확연히 줄어듭니다. 또한, 신차 출고 대기 기간이 없는 즉시 출고가 가능하다는 장점도 있습니다. 저희 센터는 2026년 최신 시장 데이터를 분석하여 아반떼 CN7 중고 리스, 아반떼 AD 중고 리스 등 다양한 모델의 견적을 비교해 드립니다.</p>
+
+            <div class="keyword-tags" aria-label="연관 키워드">
+                <a href="#quote-form">아반떼 중고 리스 견적</a>
+                <a href="#pros-and-cons">아반떼 중고 리스 장단점</a>
+                <a href="#price-comparison">중고차 리스 가격 비교</a>
+                <a href="#model-comparison">아반떼 CN7 중고 리스</a>
+                <a href="#model-comparison">아반떼 AD 중고 리스</a>
+                <a href="#price-comparison">중고차 리스 초기 비용</a>
+                <a href="#pros-and-cons">아반떼 중고차 장단점</a>
+                <a href="#lease-process">중고차 리스 가입 조건</a>
+                <a href="#comparison-table">중고차 리스 vs 할부</a>
+            </div>
+        </section>
+
+        <section id="pros-and-cons">
+            <h2>중고차 리스, 신차 리스, 할부 구매: 장단점 비교</h2>
+            <p>아반떼를 구매하는 방법은 크게 신차 리스, 중고차 리스, 그리고 할부/현금 구매로 나뉩니다. 각 방법은 장단점이 뚜렷하므로, 자신의 경제 상황과 운전 스타일에 맞춰 현명하게 선택해야 합니다. 특히 <strong>아반떼 중고 리스</strong>의 장점을 극대화하기 위해서는 초기 비용과 총 비용을 면밀히 비교하는 것이 중요합니다.</p>
+
+            <h3>1. 아반떼 중고 리스 장점 (Advantages)</h3>
+            <ul>
+                <li><strong>저렴한 월 납입금:</strong> 신차 리스 대비 월 납입금이 저렴하여 경제적 부담을 줄일 수 있습니다. 중고차의 경우 이미 감가상각이 많이 이루어진 상태이므로, 잔존가치를 제외한 차량 대금 자체가 낮습니다.</li>
+                <li><strong>빠른 출고 및 즉시 이용:</strong> 신차 출고 대기 기간이 없는 것이 최대 장점입니다. 보통 계약 후 1~2주 내에 차량 인수가 가능합니다. 급하게 차량이 필요한 경우나 딜러가 추천하는 신차 할인을 받기 어려운 상황에서 유용합니다.</li>
+                <li><strong>초기 비용 절감:</strong> 보증금과 선납금 설정에 따라 초기 비용을 낮출 수 있습니다. 무보증 리스 상품도 많아 목돈 지출 없이 차량을 이용할 수 있습니다.</li>
+                <li><strong>취득세, 보험료 절감:</strong> 중고차의 취득세는 신차보다 낮으며, 리스 회사가 일괄 처리하므로 개인 명의로 구매할 때보다 절차상의 번거로움이 적습니다.</li>
+            </ul>
+
+            <h3>2. 아반떼 중고 리스 단점 및 주의사항 (Disadvantages)</h3>
+            <ul>
+                <li><strong>차량 컨디션 확인 필요:</strong> 중고차이므로 신차와 달리 차량 상태를 꼼꼼히 확인해야 합니다. 침수차, 사고차 등의 위험을 피하기 위해 신뢰할 수 있는 <strong>전문 업체</strong>를 통해 견적을 받아야 합니다.</li>
+                <li><strong>계약 해지 위약금:</strong> 리스 계약 기간 중 해지 시 위약금이 발생합니다. 계약 기간을 신중하게 선택해야 하며, 중도 해지 시 '내돈내산' 후기가 좋은 리스사라도 위약금 규정을 반드시 확인해야 합니다.</li>
+                <li><strong>보험료 포함 여부:</strong> 리스 상품에 따라 자동차보험료가 리스료에 포함되지 않는 경우가 많습니다. 이때 개인 명의로 보험에 가입해야 하며, 중고 리스 기간 동안의 보험료까지 합산하여 총 비용을 계산해야 합니다.</li>
+            </ul>
+            <p><strong>아반떼 중고 리스</strong>는 신차 구매를 망설이는 소비자들에게 훌륭한 대안이지만, '장점'과 '단점'을 정확히 이해하고 비교해야 합니다. 특히 <span class="highlight">총 금융 비용</span>과 <span class="highlight">차량 유지 보수</span>에 대한 책임 소재를 명확히 파악하는 것이 중요합니다.</p>
+        </section>
+
+        <section id="price-comparison">
+            <h2>아반떼 모델별 중고 리스 가격 및 비용 분석 (2026년)</h2>
+            <p><strong>아반떼 중고 리스 가격</strong>은 차량의 연식, 주행거리, 모델(CN7, AD), 그리고 리스 조건(기간, 보증금, 잔존가치)에 따라 천차만별입니다. 2026년 현재 시장에서 인기 있는 아반떼 중고 리스 모델을 중심으로 평균적인 월 납입금을 비교 분석해 드립니다. 특히 아반떼 CN7과 AD 모델의 <span class="highlight">월 납입금 차이점</span>을 중심으로 살펴보겠습니다.</p>
+
+            <h3>1. 아반떼 중고 리스 월 납입금 구성 요소</h3>
+            <p>리스 견적 시 <strong>월 납입금</strong>을 결정하는 핵심 요소는 크게 세 가지입니다. 첫째, 차량의 잔존가치(나중에 차량을 반납할 때 인정받는 가치), 둘째, 리스 기간, 셋째, 리스 금리(이자율)입니다. <strong>아반떼 중고 리스</strong>는 잔존가치가 높게 책정될수록 월 납입금이 저렴해집니다. 또한, 리스 기간을 짧게 가져갈수록 월 납입금은 증가하지만 총 이자 비용은 절감될 수 있습니다. <strong>중고차 리스 전문</strong> 업체들은 이 조건들을 조절하여 다양한 견적을 제시합니다.</p>
+
+            <div class="sub-section">
+                <h3>주요 아반떼 모델별 중고 리스 예상 견적 비교표</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>모델 (연식/등급)</th>
+                            <th>차량 가격 (평균 중고 시세)</th>
+                            <th>리스 기간/보증금</th>
+                            <th>예상 월 납입금 (원)</th>
+                            <th>비고</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>아반떼 CN7 (2022년형, 모던)</td>
+                            <td>약 1,900만원</td>
+                            <td>36개월 / 보증금 20%</td>
+                            <td>350,000 ~ 400,000</td>
+                            <td>최신 디자인 선호, 감가율 낮음</td>
+                        </tr>
+                        <tr>
+                            <td>아반떼 AD (2018년형, 스마트)</td>
+                            <td>약 1,300만원</td>
+                            <td>48개월 / 보증금 10%</td>
+                            <td>250,000 ~ 300,000</td>
+                            <td>가성비 중시, 월 납입금 저렴</td>
+                        </tr>
+                        <tr>
+                            <td>아반떼 CN7 (2021년형, 인스퍼레이션)</td>
+                            <td>약 2,200만원</td>
+                            <td>48개월 / 무보증</td>
+                            <td>450,000 ~ 500,000</td>
+                            <td>초기 비용 부담 없음, 높은 등급 선호</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><strong>참고:</strong> 위 견적은 예상 금액이며, 금리 및 잔존가치 변동에 따라 달라질 수 있습니다. 정확한 견적은 <strong>아반떼 중고 리스 비교견적</strong> 신청을 통해 확인해야 합니다. [금융감독원 금융소비자정보](https://www.fss.or.kr/)에서는 중고차 금융상품 이용 시 주의사항을 안내하고 있습니다.</p>
+            </div>
+
+            <p><strong>중고차 리스 순위</strong>를 매길 때 중요한 요소 중 하나는 '총 비용'입니다. <strong>저렴한곳</strong>을 찾는 것도 중요하지만, 보증금과 리스 기간에 따른 총 이자 비용을 고려하여 가장 합리적인 선택을 해야 합니다. 저희 센터에서는 아반떼 CN7, AD 모델별로 가장 <span class="highlight">싼곳</span>의 견적을 비교해 드립니다.</p>
+        </section>
+        
+        <section id="model-comparison">
+            <h2>아반떼 CN7 vs. 아반떼 AD 중고 리스, 어떤 모델을 선택해야 할까요?</h2>
+            <p>아반떼 중고 리스를 고려할 때 가장 많이 고민하는 부분은 모델 선택입니다. 7세대 아반떼(CN7)와 6세대 아반떼(AD)는 디자인, 편의 사양, 그리고 중고차 시세에서 큰 차이를 보입니다. 각 모델의 특징을 파악하여 <strong>아반떼 중고 리스 장단점</strong>을 비교하고 자신에게 맞는 모델을 선택해야 합니다.</p>
+
+            <h3>1. 아반떼 CN7 중고 리스 (7세대)</h3>
+            <p>아반떼 CN7은 '파라메트릭 다이나믹스' 디자인이 적용되어 미래지향적이고 세련된 외관을 자랑합니다. 2020년 이후 출시된 모델로, 중고차 시장에서도 인기가 높습니다. <strong>아반떼 CN7 중고 리스</strong>는 최신 편의 사양(예: 통합형 디스플레이, 스마트 크루즈 컨트롤)을 누릴 수 있다는 장점이 있습니다. 다만, 아반떼 AD에 비해 중고차 가격이 높게 형성되어 있어 월 납입금이 상대적으로 비쌉니다. <span class="highlight">가성비</span>보다는 <span class="highlight">디자인과 최신 사양</span>을 중시하는 운전자에게 적합합니다.</p>
+
+            <h3>2. 아반떼 AD 중고 리스 (6세대)</h3>
+            <p>아반떼 AD는 2015년부터 2020년까지 생산된 모델로, 합리적인 가격으로 <span class="highlight">가성비</span>를 찾는 운전자들에게 최적입니다. <strong>아반떼 AD 중고 리스</strong>는 월 납입금이 아반떼 CN7 대비 현저히 낮아 경제성이 뛰어납니다. 운전 경력이 짧은 <span class="highlight">신규 운전자</span>나 세컨드 카 용도로 활용하려는 운전자들에게 <strong>아반떼 중고 리스 추천</strong> 모델로 꼽힙니다. 다만, CN7 대비 구형 디자인과 일부 편의 사양 부재는 감수해야 합니다.</p>
+
+            <div class="sub-section">
+                <p><strong>아반떼 중고 리스</strong>를 결정할 때 고려해야 할 사항을 간단하게 정리해 보았습니다. 아반떼 CN7의 경우 <span class="highlight">디자인</span>과 <span class="highlight">최신 기술</span>, 아반떼 AD의 경우 <span class="highlight">저렴한 월 납입금</span>과 <span class="highlight">가성비</span>가 핵심입니다. [나무위키 자동차 리스 관련 정보](https://namu.wiki/w/%EC%9E%90%EB%8F%99%EC%B0%A8%EB%A6%AC%EC%8A%A4)를 참고하여 중고 리스의 기본 개념을 이해하는 것도 도움이 됩니다.</p>
+            </div>
+
+            <img src="https://images.pexels.com/photos/103566/pexels-photo-103566.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="content-image" alt="아반떼 중고 리스 차량">
+        </section>
+        
+        <section id="lease-process">
+            <h2>중고차 리스 진행 과정과 주의해야 할 점</h2>
+            <p><strong>아반떼 중고 리스</strong> 계약은 신차 리스와 유사한 절차로 진행됩니다. 하지만 중고차 리스만의 특징이 있으므로, 가입 전 꼼꼼하게 확인하는 것이 중요합니다. 특히 <strong>전문 업체</strong>의 <span class="highlight">내돈내산 후기</span>를 참고하여 리스사를 선택하는 것이 좋습니다.</p>
+
+            <h3>1. 중고 리스 진행 절차</h3>
+            <p><strong>STEP 1: 견적 상담 및 차량 선택</strong><br> 원하는 아반떼 모델(CN7/AD), 연식, 주행거리, 리스 기간(24~60개월), 보증금/선납금 여부 등을 결정합니다. 이 단계에서 여러 리스사의 <strong>아반떼 중고 리스 견적</strong>을 비교하여 가장 <span class="highlight">저렴한곳</span>을 찾습니다.</p>
+            <p><strong>STEP 2: 차량 점검 및 심사</strong><br> 선택한 중고차의 상태를 확인하고 리스사에서 차량 심사를 진행합니다. 동시에 운전자의 신용도 및 소득을 바탕으로 리스 심사가 이루어집니다. 신용 등급이 낮더라도 심사가 가능한 상품이 있으니 상담 시 문의해 보세요.</p>
+            <p><strong>STEP 3: 계약 및 출고</strong><br> 리스 계약서를 작성하고 보험 가입, 차량 등록 등의 행정 절차를 거칩니다. 중고 리스는 신차와 달리 대기 기간 없이 빠르게 차량을 인수할 수 있습니다. [국토교통부 자동차관리정보](https://www.molit.go.kr/)에서 차량 등록 정보와 관련 법규를 확인할 수 있습니다.</p>
+
+            <h3>2. 중고 리스 vs. 중고차 할부: 총 비용 차이점</h3>
+            <p><strong>아반떼 중고 리스</strong>와 할부 구매를 두고 고민하는 경우가 많습니다. 리스는 초기 비용 부담이 적고, 월 납입금이 할부 대비 저렴하게 느껴질 수 있습니다. 하지만 <span class="highlight">총 금융 비용</span> 측면에서 리스가 더 비쌀 수도 있습니다. 리스료에는 취득세, 등록비, 자동차세 등이 포함되지만 이자율이 높고 잔존가치를 제외한 금액만 납부하므로 총 이자 비용을 잘 계산해야 합니다.</p>
+            <div class="comparison-chart">
+                <div class="chart-item">
+                    <div class="chart-title">초기 비용</div>
+                    <div class="chart-value">리스 승</div>
+                    <div class="chart-description">무보증 리스 가능, 초기 목돈 지출 없음</div>
+                </div>
+                <div class="chart-item">
+                    <div class="chart-title">월 납입금</div>
+                    <div class="chart-value">리스 승</div>
+                    <div class="chart-description">잔존가치 제외로 월 납입금 저렴</div>
+                </div>
+                <div class="chart-item">
+                    <div class="chart-title">총 지출 비용</div>
+                    <div class="chart-value">할부 승</div>
+                    <div class="chart-description">만기 시 차량 소유 가능, 이자율 비교 필요</div>
+                </div>
+            </div>
+            <p>만기 시 차량을 인수할 계획이라면 할부가 유리할 수 있습니다. 만기 시 반납하거나 재리스를 원한다면 <strong>아반떼 중고 리스</strong>가 현명한 선택일 수 있습니다.</p>
+        </section>
+        
+        <section id="quote-form">
+            <h2>아반떼 중고 리스, 1분 안에 최저가 견적 받기</h2>
+            <p><strong>아반떼 중고 리스</strong>는 어떤 리스사를 선택하느냐에 따라 월 납입금이 크게 달라집니다. 저희 비교센터는 여러 리스사의 <strong>아반떼 중고 리스 상품</strong>을 한 번에 비교하여 고객님께 맞는 최적의 견적을 찾아 드립니다. 복잡한 서류나 절차 없이 간편하게 <span class="highlight">무료 견적</span>을 신청하세요.</p>
+
+            <div class="contact-form">
+                <form action="#" method="post">
+                    <h3>아반떼 중고 리스 견적 비교 신청</h3>
+                    <div class="form-group">
+                        <div>
+                            <label for="car_model">희망 차량 모델</label>
+                            <select id="car_model" name="car_model" required>
+                                <option value="">모델을 선택하세요</option>
+                                <option value="아반떼 CN7">현대 아반떼 CN7</option>
+                                <option value="아반떼 CN7(하이브리드)">현대 아반떼 CN7 하이브리드</option>
+                                <option value="아반떼 AD">현대 아반떼 AD</option>
+                                <option value="아반떼 MD">현대 아반떼 MD</option>
+                                <option value="기타">기타 준중형 모델</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="car_year_range">희망 차량 연식 (예: 2020~2022년형)</label>
+                            <input type="text" id="car_year_range" name="car_year_range" placeholder="예: 2020-2022년형" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            <label for="lease_term">희망 리스 기간</label>
+                            <select id="lease_term" name="lease_term" required>
+                                <option value="">기간을 선택하세요</option>
+                                <option value="24개월">24개월 (2년)</option>
+                                <option value="36개월">36개월 (3년)</option>
+                                <option value="48개월">48개월 (4년)</option>
+                                <option value="60개월">60개월 (5년)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="down_payment">보증금/선납금 여부</label>
+                            <select id="down_payment" name="down_payment" required>
+                                <option value="">선택하세요</option>
+                                <option value="무보증">무보증 (초기 비용 0)</option>
+                                <option value="보증금_10">보증금 10%</option>
+                                <option value="보증금_20">보증금 20%</option>
+                                <option value="보증금_30">보증금 30% 이상</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            <label for="contact_name">성함</label>
+                            <input type="text" id="contact_name" name="contact_name" required>
+                        </div>
+                        <div>
+                            <label for="contact_phone">연락처</label>
+                            <input type="text" id="contact_phone" name="contact_phone" placeholder="010-XXXX-XXXX" required>
+                        </div>
+                    </div>
+                    <label for="message">추가 문의사항 (예: 주행거리 제한, 보험 처리 방식 등)</label>
+                    <textarea id="message" name="message" rows="3" placeholder="예: 연간 주행거리 2만km 이상 운행 예정입니다."></textarea>
+
+                    <button type="submit">아반떼 중고 리스 무료 견적 신청</button>
+                    <p class="link-reference">본 견적 신청은 실제 리스 가입이 아니며, 상담을 위한 정보 제공에 동의합니다.</p>
+                </form>
+            </div>
+        </section>
+
+        <section id="faq">
+            <h2>자주 묻는 질문 (FAQ)</h2>
+            <dl class="accordion">
+                <dt tabindex="0" aria-expanded="false">Q1: 아반떼 중고 리스 시 차량의 연식 제한이 있나요?</dt>
+                <dd>A: 네, 리스 상품에 따라 연식 제한이 있습니다. 대부분의 <strong>중고차 리스 전문 업체</strong>는 출고 후 3~5년 이내의 차량을 대상으로 리스를 진행합니다. 아반떼 CN7 모델이 중고차 리스 시장에서 가장 활발하게 거래되는 이유도 여기에 있습니다. 연식이 오래된 아반떼 MD 모델은 리스보다 할부 구매가 유리할 수 있습니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false">Q2: 중고 리스와 장기 렌트의 차이점은 무엇인가요?</dt>
+                <dd>A: 가장 큰 차이는 <span class="highlight">보험 가입 주체</span>와 <span class="highlight">일반 번호판 사용 여부</span>입니다. <strong>아반떼 중고 리스</strong>는 일반 번호판(하, 허, 호 번호판 아님)을 사용하며, 보험은 개인 명의로 가입해야 합니다. 장기 렌트는 렌터카 회사 명의로 보험이 가입되어 사고 시 보험료 할증 걱정이 없지만, '하', '호' 번호판을 사용합니다. [자동차 보험료 관련 나무위키](https://namu.wiki/w/%EC%9E%90%EB%8F%99%EC%B0%A8%EB%B3%B4%ED%97%98)를 참고하여 중고 리스 보험료를 예상해 보세요.</dd>
+
+                <dt tabindex="0" aria-expanded="false">Q3: 중고 리스 계약 만기 시 차량 인수가 가능한가요?</dt>
+                <dd>A: 네, 가능합니다. <strong>아반떼 중고 리스</strong> 계약 만기 시 차량 인수(구매), 반납, 또는 재리스를 선택할 수 있습니다. 리스 계약 시 정해진 잔존가치 금액을 납부하면 차량을 인수할 수 있습니다. 만기 시 차량 인수 계획이 있다면, 처음부터 인수 비용을 고려한 <strong>아반떼 중고 리스 견적</strong>을 받아보는 것이 좋습니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false">Q4: 아반떼 중고 리스 견적 비교 시 <strong>저렴한곳</strong>을 어떻게 찾을 수 있나요?</dt>
+                <dd>A: 리스사별로 금리가 다르고, <strong>아반떼 중고 리스 상품</strong>의 잔존가치 설정이 다르기 때문에 여러 곳을 비교해야 합니다. 금융사와 캐피탈사 간에도 금리 차이가 발생합니다. <strong>중고차 리스 전문</strong> 비교센터를 이용하거나, [K-Car(케이카)와 같은 중고차 플랫폼](https://www.kcar.com/)에서 제공하는 금융 상품을 비교해 보는 것이 <strong>저렴한곳</strong>을 찾는 효과적인 방법입니다. [네이버 검색](https://www.naver.com/)에서 '아반떼 중고 리스 비교'로 검색하여 <span class="highlight">내돈내산 후기</span>를 참고하는 것도 좋습니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false">Q5: 리스 이용 시 <strong>할인 혜택</strong>이나 <strong>현금 지원금</strong>을 받을 수 있나요?</dt>
+                <dd>A: <strong>아반떼 중고 리스</strong>의 경우 신차 리스처럼 대규모 할인 이벤트나 현금 지원금 혜택은 흔치 않습니다. 하지만 일부 <strong>전문 업체</strong>에서 특정 재고 차량에 한하여 <span class="highlight">특별 프로모션</span>을 진행하거나, <strong>상품권</strong> 등을 제공하는 경우가 있습니다. <strong>견적 비교</strong> 시 이러한 <strong>할인</strong> 및 <strong>혜택</strong> 여부를 확인해 보세요. [금융위원회 정책](https://www.fsc.go.kr/)에서는 소비자 보호를 위해 금융 상품의 혜택에 대한 정확한 고지를 의무화하고 있습니다.</dd>
+            </dl>
+        </section>
+
+        <section id="additional-content">
+            <h2>심화 분석: 아반떼 중고 리스 최적화 전략 (2026년)</h2>
+            <p><strong>아반떼 중고 리스</strong>를 결정할 때는 단순히 월 납입금만 볼 것이 아니라, 총 금융 비용, 차량 상태, 그리고 계약 조건을 종합적으로 고려해야 합니다. 2026년 현재 시장 상황을 반영한 최적화 전략을 안내해 드립니다.</p>
+
+            <h3>1. 잔존가치 설정 전략: 고잔가 vs. 저잔가</h3>
+            <p><strong>아반떼 중고 리스</strong> 견적에서 '잔존가치'는 만기 시 차량의 예상 가치를 의미합니다. 잔존가치를 높게 설정하면 월 납입금이 낮아지지만, 만기 시 인수 비용이 높아집니다. 반면, 잔존가치를 낮게 설정하면 월 납입금이 높아지지만, 만기 시 인수 비용이 낮아집니다. 만기 후 차량 인수를 원한다면 잔존가치를 낮게 설정하여 월 납입금을 높이는 것이 총 이자 비용을 줄이는 방법이 될 수 있습니다. <strong>아반떼 CN7 중고 리스</strong>처럼 감가율이 낮은 인기 모델은 잔존가치를 높게 설정해도 인수 시 부담이 적습니다.</p>
+
+            <h3>2. 리스 계약 시 <strong>전문 업체</strong> 선정의 중요성</h3>
+            <p>중고 리스는 신차 리스보다 차량 상태에 대한 검증이 중요합니다. <strong>전문 업체</strong>의 <span class="highlight">후기</span>를 꼼꼼히 확인하고, 계약 전 차량의 정비 이력 및 성능 점검 기록부를 반드시 확인해야 합니다. 침수차나 사고 이력이 있는 차량을 리스할 경우, 예상치 못한 수리 비용이 발생할 수 있습니다. <strong>아반떼 중고 리스</strong>의 경우 특히, 연식이 짧더라도 주행거리가 긴 차량(예: 영업용 차량)이 많으므로, 주행거리 제한 특약과 차량 상태를 면밀히 점검해야 합니다.</p>
+
+            <h3>3. 리스 만기 시 재리스 또는 반납의 현명한 선택</h3>
+            <p>리스 만기 시점에 <strong>아반떼 중고 리스</strong> 차량을 반납할지, 재리스할지, 인수할지 결정해야 합니다. 차량 인수 시에는 취득세와 인수에 따른 추가 비용이 발생합니다. 재리스를 선택할 경우, 리스 기간이 연장되어 월 납입금이 조정될 수 있습니다. <strong>아반떼 CN7</strong>이나 <strong>아반떼 AD</strong> 모델 모두 중고차 시장에서 인기가 높기 때문에 만기 시점에 중고차 시세가 잔존가치보다 높으면 인수 후 되파는 것이 유리할 수도 있습니다. <span class="highlight">Gemini</span>, <span class="highlight">ChatGPT</span>, <span class="highlight">AI</span>와 같은 도구를 활용하여 중고차 시세와 리스 비용을 비교하는 것도 좋은 방법입니다. 또한 [유튜브](https://www.youtube.com/) 등 동영상 플랫폼에서 리스 전문가의 조언을 찾아볼 수도 있습니다.</p>
+        </section>
+        
     </main>
-  </body>
-</html>
+
+    <script>
+      // FAQ 아코디언 기능 (접기/펼치기)
+      document.querySelectorAll('dl.accordion dt').forEach((dt) => {
+        dt.addEventListener('click', () => {
+          dt.classList.toggle('active');
+          let dd = dt.nextElementSibling;
+          let expanded = dt.getAttribute('aria-expanded') === 'true';
+          dt.setAttribute('aria-expanded', !expanded);
+          if (expanded) {
+            dd.style.display = 'none';
+          } else {
+            dd.style.display = 'block';
+          }
+        });
+        dt.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            dt.click();
+          }
+        });
+      });
+    </script>
+
+  
